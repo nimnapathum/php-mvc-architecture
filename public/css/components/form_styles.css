@@ -1,0 +1,70 @@
+.form-container ,
+.post-container
+{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.form-container form, 
+.post-container form
+{
+    width: 40%;
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    flex-direction: column;
+    background-color: #fafafa;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.form-container form input ,
+.form-container form textarea ,
+.post-container form input ,
+.post-container form textarea
+{
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.form-container form label ,
+.post-container form label
+{
+    align-self: flex-start;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.form-container form button ,
+.post-container form button
+{
+    width: 100%;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+}
+
+.form-container form button:hover ,
+.post-container form button:hover
+{
+    background-color: #555;
+}
+
+.form-invalid{
+    color: red;
+    font-size: 0.8em;
+    align-self: flex-start;
+    margin-left: 10px;
+}

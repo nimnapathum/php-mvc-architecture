@@ -1,0 +1,224 @@
+body{
+    margin:0;
+    font-size: 15px;
+    background-color: rgb(177, 117, 38);
+}
+
+*{
+    padding:0;
+    margin:0;
+    box-sizing:border-box;
+}
+
+svg{
+    color:beige;
+} 
+
+:root{
+    --width-df: min(1200px, 90vw);
+    --diameter: 800px;
+}
+
+header{
+    width:var(--width-df);
+    height:70px;
+    margin:auto;
+    display:flex; 
+    justify-content: space-between;
+    align-items: center;
+    position:relative;
+    z-index:1;
+}
+
+header .logo img{
+    width:50px;
+}
+
+
+.slider{
+    color: aliceblue;
+    width:100%;
+    height:100vh;
+    overflow:hidden;
+    margin-top:-70px;
+    position:relative;
+}
+
+.slider .list .item{
+    position: absolute;
+    inset:0 0 0 0 ;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+
+}
+
+.slider .list .item .content{
+    position:absolute;
+    top:20%;
+    width:max-content;
+    display:grid;
+    grid-template-columns: repeat(2, 400px);
+    gap:80px;
+    font-size: 1.2em;
+    text-transform:uppercase;
+    font-family:poppins;
+    text-shadow: 0 0 80px #000000;
+}
+
+.slider .list .item .content h2{
+    font-size:5em;
+    font-family:'Bebas Neue';
+    line-height:0.9em;
+    grid-row-start:1;
+    grid-row-end: 3;
+}
+
+.slider .list .item .content p:last-child{
+    display:flex;
+    align-items:end;
+    padding-bottom:25px;
+
+}
+
+.slider .list  .image{
+    flex-shrink:0;
+    width:var(--diameter);
+    height:var(--diameter);
+    background-image: var(--url);
+    background-position: center;
+    background-size: var(--diameter) var(--diameter);
+    border-radius:50%;
+    position: relative;
+
+}
+
+.slider .list .item .image::before,
+.slider .list .item .image::after{
+    position:absolute;
+    width:70%;
+    height:70%;
+    content:'';
+    border-radius:50%;
+    background-image: 
+        linear-gradient( to right, #0004 ,#0004),
+        var(--url);
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    background-position: center;
+    background-size:var(--diameter) var(--diameter);
+    
+}
+.slider .list .item .image::after{
+    width:30%;
+    height:30%;
+    background-image: var(--url);
+}
+/* animation */
+/* items comes  before item active*/
+
+.slider .list .content h2{
+    transform: translateY(-100%);
+    transition: 1s;
+}
+
+.slider .list .item .image{
+    transform:rotate(-68deg);
+    filter:blur(30px);
+    transition:  1s;
+    
+}
+
+.slider .list .item .image::before{
+    transform: translate(-50%,-50%) rotate(-120deg);
+    transition: transform 1s;
+}
+
+.slider .list .item .image::after{
+    transform: translate(-50%,-50%) rotate(-170deg);
+    transition: transform 1s;
+} 
+
+.slider .list .item{
+    pointer-events:none;
+    opacity:0;
+    transition: opacity 1s;
+}  
+
+.slider .list .item.active{
+    opacity:1;
+    pointer-events:auto;
+   
+}
+
+.slider .list .item.active .content h2{
+    transform: translateY(0);
+}
+.slider .list .item.active .image{
+    transform: rotate(0);
+    filter:blur(0);
+}
+
+.slider .list .item.active .image::before,
+.slider .list .item.active .image::after{
+    transform: translate(-50%,-50%) rotate(0);
+}
+
+/* item after active item */
+
+.slider .list .item.active ~ .item{
+    opacity: 1;
+}
+
+.slider .list .item.active ~  .item .content h2{
+    transform: translateY(100%);
+  
+}
+
+.slider .list .item.active ~  .item .image{
+    transform: rotate(68deg);
+    filter:blur(0px);
+}
+
+.slider .list .item.active ~  .item .image::before{
+    transform: translate(-50%,-50%) rotate(120deg);
+}       
+
+.slider .list .item.active ~  .item .image::after{
+    transform: translate(-50%,-50%) rotate(170deg);
+}
+
+/* arrows */
+
+.arrows{
+    position:absolute;
+    top:50%;
+    transform: translateX(-50%);
+    bottom:30px;
+    width: var(--width-df);
+    display:flex;
+    justify-content: space-between;
+    
+}
+
+.arrow button{
+    all:unset;
+    cursor:pointer;
+}
+
+.slider .list::after{
+    position:absolute;
+    content:'';
+    left: 50%;
+    bottom:0;
+    transform: translateX(-50%);
+    width: min(1000px, 100vw);
+    background-image: url();
+    height:70%;
+    background-position: top;
+    background-size:cover;
+    pointer-events: none;
+    animation:showmodel 1s ease-in-out 1 forwards;
+
+}
