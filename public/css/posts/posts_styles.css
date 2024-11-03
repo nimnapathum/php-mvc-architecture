@@ -1,0 +1,88 @@
+/** post index */
+.post-index-container{
+    margin: 20px auto;
+    background-color: #fefefe;
+    border-radius: 5px;
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.2);
+    width: 500px;
+    border: 0.5px solid rgba(102, 102, 102 , 0.3);
+}
+
+.post-header{
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.post-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-user-name{
+    font-size: 16px;
+}
+
+.post-created-at{
+    font-size: 14px;
+    color: #333;
+}
+
+.header-bar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.header-bar a img{
+    width: 30px;
+    height: 30px;
+}
+
+.post-body{
+    color: #333;
+    padding: 10px 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.post-title{
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.post-footer{
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.post-likes{
+    color: #25f363;
+}
+
+.post-dislike{
+    color: #eb442c;
+}
+
+.post-control-btns{
+    display: inline-block;
+}
+
+.post-control-btns a img{
+    height: 15px;
+    width: 15px;
+    margin-left: 5px;
+    opacity: 0.5;
+    transition: 0.3s;
+}
+
+.post-control-btns a img:hover{
+    opacity: 1;
+}

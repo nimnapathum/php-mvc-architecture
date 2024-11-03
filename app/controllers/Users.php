@@ -3,7 +3,7 @@ class Users extends Controller
 {
     public function __construct()
     {
-        $this->userModel = $this->model('m_Users');
+        $this->usersModel = $this->model('m_Users');
     }
 
     public function register()
@@ -35,7 +35,7 @@ class Users extends Controller
             if (empty($data['email'])) {
                 $data['email_err'] = 'Please enter the email';
             } else {
-                if ($this->userModel->findUserByEmail($data['email'])) {
+                if ($this->usersModel->findUserByEmail($data['email'])) {
                     $data['email_err'] = 'Email is already registered!';
                 }
             }
@@ -57,7 +57,7 @@ class Users extends Controller
                 $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
                 // register user
-                if ($this->userModel->register($data)) {
+                if ($this->usersModel->register($data)) {
                     flash('reg_flash' , 'You are successfully registered!');
                     redirect('Users/login');
                 } else {
@@ -106,7 +106,7 @@ class Users extends Controller
             if(empty($data['email'])){
                 $data['email_err'] = 'Please enter the email';
             }else{
-                if($this->userModel->findUserByEmail($data['email'])){
+                if($this->usersModel->findUserByEmail($data['email'])){
                     //user found
                 }else{
                     //user not found
@@ -122,7 +122,7 @@ class Users extends Controller
             //check if all the errors are empty
             if(empty($data['email_err']) && empty($data['password_err'])){
                 //login the user
-                $loggedUser = $this->userModel->login($data['email'] , $data['password']);
+                $loggedUser = $this->usersModel->login($data['email'] , $data['password']);
                 if($loggedUser){
                     // User is authenticated
                     // create user session

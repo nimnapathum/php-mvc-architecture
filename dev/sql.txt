@@ -16,3 +16,16 @@ CREATE TABLE Post(
     PRIMARY KEY(id),
     FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE
 );
+
+CREATE VIEW v_posts AS 
+    SELECT 
+    post.id AS post_id,
+    users.id AS user_id,
+    users.name AS user_name,
+    post.title AS title,
+    post.body AS body,
+    post.create_at AS post_create_at,
+    users.create_at AS user_create_at
+    FROM post INNER JOIN users
+    ON post.user_id = users.id
+    ORDER BY post.create_at DESC;

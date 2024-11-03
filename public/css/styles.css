@@ -1,6 +1,7 @@
 @import url('components/topnavbar_styles.css');
 @import url('components/form_styles.css');
 @import url('components/flash_message_styles.css');
+@import url('posts/posts_styles.css');
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
 *{

@@ -25,4 +25,8 @@ class Pages extends Controller
     public function slider(){
         $this->view('slider');
     }
+
+    public function portpolio(){
+        $this->view('portpolio');
+    }
 }

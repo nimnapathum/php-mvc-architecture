@@ -19,4 +19,7 @@ class Controller
             die('Corresponding view does not exists!');
         }
     }
-}
+} 
+
+
+
