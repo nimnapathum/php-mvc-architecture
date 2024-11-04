@@ -3,6 +3,7 @@
     require_once 'helpers/URL_Helper.php';
     require_once 'helpers/Session_Helper.php';
     require_once 'helpers/TimeHelper.php';
+    require_once 'helpers/imageUpload_helper.php';
 
     // Load the config file
     require_once 'config/config.php';

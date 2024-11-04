@@ -1,6 +1,5 @@
-.form-container ,
-.post-container
-{
+.form-container,
+.post-container {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -9,9 +8,8 @@
     margin-top: 10px;
 }
 
-.form-container form, 
-.post-container form
-{
+.form-container form,
+.post-container form {
     width: 40%;
     display: flex;
     /* justify-content: center; */
@@ -23,11 +21,10 @@
     border-radius: 5px;
 }
 
-.form-container form input ,
-.form-container form textarea ,
-.post-container form input ,
-.post-container form textarea
-{
+.form-container form input,
+.form-container form textarea,
+.post-container form input,
+.post-container form textarea {
     width: 100%;
     padding: 10px;
     margin: 5px 0;
@@ -35,20 +32,18 @@
     border: 1px solid #ccc;
 }
 
-.form-container form label ,
-.post-container form label
-{
+.form-container form label,
+.post-container form label {
     align-self: flex-start;
     margin-left: 10px;
     font-weight: bold;
 }
 
-.form-container form button ,
-.post-container form button
-{
+.form-container form button,
+.post-container form button {
     width: 100%;
     padding: 10px;
-    margin: 5px;
+    margin: 0;
     border-radius: 5px;
     border: 1px solid #ccc;
     background-color: #333;
@@ -56,13 +51,12 @@
     cursor: pointer;
 }
 
-.form-container form button:hover ,
-.post-container form button:hover
-{
+.form-container form button:hover,
+.post-container form button:hover {
     background-color: #555;
 }
 
-.form-invalid{
+.form-invalid {
     color: red;
     font-size: 0.8em;
     align-self: flex-start;
@@ -70,3 +64,89 @@
 }
 
 
+
+/** profile picture area */
+
+.form-drag-area {
+    height: 100px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 2px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    transition: 300ms ease-in;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+.form-drag-area.active {
+    border: 2px dashed #555;
+    background-color: #d8d8d8;
+}
+
+.form-container form .form-drag-area .icon img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.right-content {
+    margin: 0 auto;
+}
+
+.description {
+    font-size: 14px;
+}
+
+.form-drag-area .form-upload {
+    background-color: #777;
+    color: #333;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+    border-radius: 5px;
+    width: 90%;
+}
+
+.form-drag-area .form-upload:hover{
+    opacity: 1;
+}
+
+.form-validation {
+    font-size: 14px;
+    transition: .7s all;
+}
+
+.profile-image-validation {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.form-validation.active {
+    opacity: 1;
+    height: auto;
+}
+
+.form-validation > div {
+    opacity: 0.3;
+}
+
+.form-validation > div.active {
+    opacity: 1;
+    font-weight: 600;
+    color: #28a745;
+}
+
+.form-validation > div.img {
+    opacity: 1;
+}
+
+.profile-image-validation img {
+    width: 20px;
+    height: 20px;
+}

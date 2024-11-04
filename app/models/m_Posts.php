@@ -13,8 +13,9 @@
         }
 
         public function create($data){
-            $this->db->query('INSERT INTO Post(user_id , title , body) VALUES (:user_id , :title , :body);');
+            $this->db->query('INSERT INTO Post(user_id , image , title , body) VALUES (:user_id , :image , :title , :body);');
             $this->db->bind(':user_id' , $_SESSION['user_id']);
+            $this->db->bind(':image' , $data['image_name']);
             $this->db->bind(':title' , $data['title']);
             $this->db->bind(':body' , $data['body']);
 
@@ -26,7 +27,8 @@
         }
 
         public function edit($data){
-            $this->db->query('UPDATE Post SET title = :title , body = :body WHERE id = :id');
+            $this->db->query('UPDATE Post SET image = :image , title = :title , body = :body WHERE id = :id');
+            $this->db->bind(':image' , $data['image_name']);
             $this->db->bind(':title' , $data['title']);
             $this->db->bind(':body' , $data['body']);
             $this->db->bind(':id' , $data['post_id']);

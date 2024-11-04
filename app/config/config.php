@@ -13,3 +13,6 @@
     define("DB_USER", "root");  
     define("DB_PASS", "");
     define("DB_NAME", "practical_app");
+
+    //pub root
+    define("PUBROOT" , dirname(dirname(dirname(__FILE__))).'\public');

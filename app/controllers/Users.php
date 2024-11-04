@@ -14,12 +14,15 @@ class Users extends Controller
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
             $data = [
+                'profile_image' => $_FILES['profile_image'],
+                'profile_image_name' => time().'_'.$_FILES['profile_image']['name'],
                 'name' => trim($_POST['name']),
                 'email' => trim($_POST['email']),
                 'password' => trim($_POST['password']),
                 'confirm_password' => trim($_POST['confirm_password']),
                 'age' => trim($_POST['age']),
 
+                'profile_image_err' => '',
                 'name_err' => '',
                 'email_err' => '',
                 'password_err' => '',
@@ -28,6 +31,14 @@ class Users extends Controller
             ];
 
             //validate each input
+
+            //validate profile image 
+            if(uploadImage($data['profile_image']['tmp_name'] , $data['profile_image_name'] , '/img/profileImgs/')){
+
+            }else{
+                $data['profile_image_err'] = 'Profile picture uploading unsuccessfully';
+            }
+            
             //validate name
             if (empty($data['name'])) {
                 $data['name_err'] = 'Please enter the name';
@@ -52,7 +63,7 @@ class Users extends Controller
             }
 
             // validation is completed and no error then register the user
-            if (empty($data['name_err']) && empty($data['email_err']) && empty($data['age_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])) {
+            if (empty($data['name_err']) && empty($data['email_err']) && empty($data['age_err']) && empty($data['password_err']) && empty($data['confirm_password_err']) && empty($data['profile_image_err'])) {
                 // hash the password
                 $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
@@ -70,12 +81,15 @@ class Users extends Controller
         } else {
             // initial form
             $data = [
+                'profile_image' => '',
+                'profile_image_name' => '',
                 'name' => '',
                 'email' => '',
                 'password' => '',
                 'confirm_password' => '',
                 'age' => '',
 
+                'profile_image_err' => '',
                 'name_err' => '',
                 'email_err' => '',
                 'password_err' => '',
@@ -152,6 +166,7 @@ class Users extends Controller
     public function createUserSession($user){
         $_SESSION['user_id'] = $user->id;
         $_SESSION['user_email'] = $user->email;
+        $_SESSION['user_profile_image'] = $user->profile_image;
         $_SESSION['user_name'] = $user->name;
         redirect('Pages/index');
     }
@@ -159,9 +174,10 @@ class Users extends Controller
     public function logout(){
         unset($_SESSION['user_id']);
         unset($_SESSION['user_email']);
+        unset($_SESSION['user_profile_image']);
         unset($_SESSION['user_name']);
         session_destroy();
-        redirect('User/login');
+        redirect('Users/login');
     }
 
     public function isLoggedIn(){

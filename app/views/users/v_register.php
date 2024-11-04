@@ -6,7 +6,27 @@
     <div class="form-header">
         <h1>Sign up</h1>
     </div>
-    <form action="<?php echo URLROOT; ?>/Users/register" method="POST">
+    <form action="<?php echo URLROOT; ?>/Users/register" method="POST" enctype="multipart/form-data">
+        <div class="form-drag-area">
+            <div class="icon">
+                <img src="<?php echo URLROOT; ?>/img/profile.png" alt="profile picture" id="profile_image_placeholder">
+            </div>
+            <div class="right-content">
+                <div class="description">Drag & Drop to upload File</div>
+                <div class="form-upload">
+                    <input type="file" name="profile_image" id="profile_image" style="display: none;">
+                    Browse File
+                </div>
+            </div>
+        </div>
+        <div class="form-validation">
+            <div class="profile-image-validation">
+                <img src="<?php echo URLROOT; ?>/img/done.png" alt="done">
+                <div>Select a profile picture</div>                
+            </div>
+        </div>
+        <span class="form-invalid"><?php echo $data['profile_image_err'] ?></span>
+
         <label for="name">Name:</label>
         <input type="text" name="name" id="name" value="<?php echo $data['name'] ?>">
         <span class="form-invalid"><?php echo $data['name_err'] ?></span>
@@ -35,5 +55,7 @@
         <button type="submit" value="register">Sign up</button>
     </form>
 </div>
+
+<script src="<?php echo URLROOT; ?>/js/imageUpload/imageUpload.js"></script>
 
 <?php require APPROOT . '/views/inc/Footer.php'; ?>

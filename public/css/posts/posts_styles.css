@@ -22,6 +22,14 @@
     align-items: center;
 }
 
+.user-details{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
 .post-user-name{
     font-size: 16px;
 }
@@ -67,7 +75,20 @@
     color: #25f363;
 }
 
-.post-dislike{
+.post-footer img{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.inline-items-set{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.post-dislikes{
     color: #eb442c;
 }
 
@@ -85,4 +106,43 @@
 
 .post-control-btns a img:hover{
     opacity: 1;
+}
+
+/** image upload section */
+
+.upper{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 5px;
+    align-items: center;
+}
+
+.upper .left{
+    width: 90%;
+}
+
+.upper .right{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.8;
+}
+
+.upper .right img{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.upper .right:hover{
+    opacity: 1;
+}
+
+.post-container .post-image img{
+    width: 100%;
+    height: auto;
+    border-radius: 3px;
+    margin-bottom: 5px;
 }
