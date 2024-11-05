@@ -40,14 +40,42 @@
                 <?php echo $post->body ?>
             </div>
             <div class="post-footer">
-                <div class="inline-items-set post-likes"><img src="<?php echo URLROOT ?>/img/like.png" alt=""> <?php echo $post->likes ?></div>
-                <div class="inline-items-set post-dislikes"><img src="<?php echo URLROOT ?>/img/dislike.png" alt=""> <?php echo $post->dislikes ?></div>
-                <div class="inline-items-set"><img src="<?php echo URLROOT ?>/img/eye.png" alt=""> <?php echo $post->views ?></div>
+
+
+                <?php if($post->interaction == 'liked'): ?>
+                    <div class="inline-items-set post-likes active" id="post-likes-<?php echo $post->post_id; ?>" onclick="addLikes(<?php echo $post->post_id; ?>)">      
+                <?php else: ?>
+                    <div class="inline-items-set post-likes" id="post-likes-<?php echo $post->post_id; ?>" onclick="addLikes(<?php echo $post->post_id; ?>)">
+                <?php endif; ?>       
+                    <img src="<?php echo URLROOT ?>/img/like.png" alt=""> 
+                    <div class="posts-likes-count" id="posts-likes-count-<?php echo $post->post_id; ?>"><?php echo $post->likes; ?></div>     
+                </div>
+
+
+                <?php if($post->interaction == 'disliked'): ?>
+                    <div class="inline-items-set post-dislikes active" id="post-dislikes-<?php echo $post->post_id; ?>" onclick="addDislikes(<?php echo $post->post_id; ?>)">
+                <?php else: ?>
+                    <div class="inline-items-set post-dislikes" id="post-dislikes-<?php echo $post->post_id; ?>" onclick="addDislikes(<?php echo $post->post_id; ?>)">
+                <?php endif; ?>   
+                    <img src="<?php echo URLROOT ?>/img/dislike.png" alt=""> 
+                    <div class="posts-dislikes-count" id="posts-dislikes-count-<?php echo $post->post_id; ?>"><?php echo $post->dislikes; ?></div>
+                </div>
+
+                
+                <div class="inline-items-set">
+                    <img src="<?php echo URLROOT ?>/img/eye.png" alt=""> <?php echo $post->views ?>
+                </div>
             </div>
         </div>
 
     <?php endforeach; ?>
 
 </div>
+
+<script src="<?php echo URLROOT; ?>/js/jQuery/jQuery.js"></script>
+<script>
+    var URLROOT = '<?php echo URLROOT; ?>'
+</script>
+<script src="<?php echo URLROOT; ?>/js/posts/postsInteractions.js"></script>
 
 <?php require APPROOT . '/views/inc/Footer.php'; ?>

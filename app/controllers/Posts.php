@@ -48,6 +48,10 @@ class Posts extends Controller
 
             if (empty($data['title_err']) && empty($data['body_err']) && empty($data['image_err'])) {
                 if ($this->postsModel->create($data)) {
+                    //get the post id
+                    $postID = $this->postsModel->getPostIdByContent($data);
+                    $userID = $_SESSION['user_id'];
+                    $this->postsModel->addPostInteractions($postID, $userID, 'new');
                     flash('post_message', 'Post Created');
                     redirect('Posts/index');
                 } else {
@@ -148,6 +152,10 @@ class Posts extends Controller
         if ($post->user_id != $_SESSION['user_id']) {
             redirect('Posts/v_index');
         } else {
+            $post = $this->postsModel->getPostByID($postID);
+            $oldImage = PUBROOT . '/img/postsImgs/' . $post->image;
+            deleteImage($oldImage);
+
             if ($this->postsModel->delete($postID)) {
                 flash('post_message', 'Post is deleted');
                 redirect('Posts/v_index');
@@ -157,5 +165,59 @@ class Posts extends Controller
         }
     }
 
-    public function show() {}
+    // post interactions
+    // Likes
+    public function incPostsLikes($postID)
+    {
+        $likes = $this->postsModel->incLikes($postID);
+        $userID = $_SESSION['user_id'];
+        if ($this->postsModel->isPostInteractionsExists($postID, $userID)) {
+            $res = $this->postsModel->setPostInteractions($postID, $userID, 'liked');
+        } else {
+            $res = $this->postsModel->addPostInteractions($postID, $userID, 'liked');
+        }
+
+        if ($likes != false && $res != false) {
+            echo $likes->likes;
+        }
+    }
+
+    public function decPostsLikes($postID)
+    {
+        $likes = $this->postsModel->decLikes($postID);
+        $userID = $_SESSION['user_id'];
+
+        $res = $this->postsModel->setPostInteractions($postID, $userID, 'like removed');
+
+        if ($likes != false && $res != false) {
+            echo $likes->likes;
+        }
+    }
+
+    public function incPostsDislikes($postID)
+    {
+        $dislikes = $this->postsModel->incDislikes($postID);
+        $userID = $_SESSION['user_id'];
+        if ($this->postsModel->isPostInteractionsExists($postID, $userID)) {
+            $res = $this->postsModel->setPostInteractions($postID, $userID, 'disliked');
+        } else {
+            $res = $this->postsModel->addPostInteractions($postID, $userID, 'disliked');
+        }
+
+        if ($dislikes != false && $res != false) {
+            echo $dislikes->dislikes;
+        }
+    }
+
+    public function decPostsDislikes($postID)
+    {
+        $dislikes = $this->postsModel->decDislikes($postID);
+        $userID = $_SESSION['user_id'];
+
+        $res = $this->postsModel->setPostInteractions($postID, $userID, 'dislike removed');
+
+        if ($dislikes != false && $res != false) {
+            echo $dislikes->dislikes;
+        }
+    }
 }

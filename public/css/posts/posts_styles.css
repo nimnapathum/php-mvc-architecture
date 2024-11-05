@@ -63,6 +63,7 @@
     font-weight: 600;
 }
 
+
 .post-footer{
     padding: 10px;
     display: flex;
@@ -73,6 +74,12 @@
 
 .post-likes{
     color: #25f363;
+}
+
+.post-likes.active img{
+    /* background-color: #25f363;
+    border-radius: 50%; */
+    filter: brightness(0) saturate(100%) invert(30%) sepia(100%) saturate(1000%) hue-rotate(90deg) brightness(1.5);
 }
 
 .post-footer img{
@@ -91,6 +98,13 @@
 .post-dislikes{
     color: #eb442c;
 }
+
+.post-dislikes.active img{
+    /* background-color: #eb442c;
+    border-radius: 50%; */
+    filter: brightness(50%) saturate(100%) invert(13%) sepia(100%) saturate(1000%) hue-rotate(-50deg) brightness(2.5);
+}
+
 
 .post-control-btns{
     display: inline-block;
