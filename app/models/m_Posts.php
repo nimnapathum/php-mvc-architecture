@@ -41,7 +41,7 @@
         }
 
         public function getPostByID($postID){
-            $this->db->query('SELECT * FROM v_posts WHERE post_id = :id;');
+            $this->db->query('SELECT * FROM v_posts INNER JOIN postsInteractions ON v_posts.user_id = postsInteractions.user_id AND v_posts.post_id = postsInteractions.post_id WHERE v_posts.post_id = :id;');
             $this->db->bind(':id' , $postID);
             $row = $this->db->single();
             return $row;

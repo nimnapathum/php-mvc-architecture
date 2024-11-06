@@ -34,6 +34,19 @@ CREATE TABLE postsInteractions(
     FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+CREATE TABLE comments(
+    comment_id INT AUTO_INCREMENT,
+    post_id INT,
+    user_id INT,
+    content TEXT NOT NULL,
+    likes INT DEFAULT 0,
+    dislikes INT DEFAULT 0,
+    cmt_create_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY(comment_id),
+    FOREIGN KEY(post_id) REFERENCES post(id) ON DELETE CASCADE,
+    FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
 CREATE VIEW v_posts AS 
     SELECT 
     post.id AS post_id,
@@ -51,3 +64,30 @@ CREATE VIEW v_posts AS
     FROM post INNER JOIN users
     ON post.user_id = users.id
     ORDER BY post.create_at DESC;
+
+
+CREATE TABLE commentInteractions(
+    interaction_id INT AUTO_INCREMENT,
+    comment_id INT,
+    user_id INT,
+    interaction VARCHAR(255),
+    PRIMARY KEY(interaction_id),
+    FOREIGN KEY(comment_id) REFERENCES comments(comment_id) ON DELETE CASCADE,
+    FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+
+CREATE VIEW v_comments AS 
+    SELECT 
+    comments.comment_id AS comment_id,
+    comments.post_id AS post_id,
+    users.id AS user_id,
+    users.profile_image as profile_image,
+    users.name AS user_name,
+    comments.content AS content,
+    comments.likes AS likes,
+    comments.dislikes AS dislikes,
+    comments.cmt_create_at AS cmt_create_at
+    FROM comments INNER JOIN users
+    ON comments.user_id = users.id
+    ORDER BY comments.cmt_create_at DESC;

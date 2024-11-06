@@ -15,6 +15,16 @@ class Posts extends Controller
         $this->view('posts/v_index', $data);
     }
 
+    public function show($postID){
+        $post = $this->postsModel->getPostById($postID);
+
+        $data = [
+            'posts' => $post
+        ];
+
+        $this->view('Posts/v_show' , $data);
+    }
+
     public function create()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
